@@ -25,11 +25,14 @@ def extract_polos_ies(url: str) -> list[str]:
         soup = BeautifulSoup(resp.text, 'html.parser')
         polos = set()
 
-        # Captura apenas o <p> dentro do .card-body
-        for item in soup.select(".card-body p"):
-            text = item.get_text(strip=True)
-            if text:
-                polos.add(normalize(text))
+        for card in soup.select(".card-body"):
+            rows = card.select(".row.p-2")
+            for row in rows:
+                p = row.find("p")
+                if p:
+                    text = p.get_text(strip=True)
+                    if text:
+                        polos.add(normalize(text))
         return sorted(polos)
     except Exception as e:
         st.error(f"Erro ao extrair polos do site IES: {e}")
@@ -71,6 +74,7 @@ if st.button("Gerar Listas"):
     })
 
     st.dataframe(df.fillna("-"))
+
 
 
 
