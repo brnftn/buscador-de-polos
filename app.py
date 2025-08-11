@@ -5,19 +5,6 @@ import unicodedata
 from datetime import datetime
 import pandas as pd
 
-# Função para normalizar nomes
-def normalize(name: str) -> str:
-    s = name.strip()
-    for prefix in ["UFBRA - ", "POLO: ", "Polo ", "polo "]:
-        if s.lower().startswith(prefix.lower()):
-            s = s[len(prefix):]
-            break
-    s = ' '.join(s.split())  # remove espaços extras
-    s = unicodedata.normalize('NFD', s)
-    s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')  # remove acentos
-    s = s.replace('–', '-')
-    return s.casefold()
-
 # Função para extrair polos do site oficial (IES)
 def extract_polos_ies(url: str) -> list[str]:
     try:
@@ -71,6 +58,7 @@ if st.button("Gerar Listas"):
     })
 
     st.dataframe(df.fillna("-"))
+
 
 
 
