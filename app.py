@@ -51,7 +51,7 @@ def extract_polos_nosso_site(url: str) -> list[str]:
         st.error(f"Erro ao extrair polos do nosso site: {e}")
         return []
 
-st.title("Comparador de Polos UFBRA")
+st.title("Comparador de Polos Marcas")
 
 url_nosso = st.text_input("URL - Nosso Site", "https://ufbra.com.br/unidades")
 url_ies = st.text_input("URL - Fonte Oficial (IES)", "https://ufbra.edu.br/polos")
