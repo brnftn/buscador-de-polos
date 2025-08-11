@@ -107,5 +107,7 @@ if st.button("Gerar Listas"):
         "Na Fonte Oficial": ["Sim" if p in polos_ies else "-" for p in todos_polos],
         "Ação": acoes
     })
-
+    
+    df = df.sort_values(by=["Estado", "Polo"]).reset_index(drop=True)
+    
     st.dataframe(df)
