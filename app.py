@@ -26,7 +26,7 @@ def extract_polos_ies(url: str) -> list[str]:
         polos = set()
 
         # Captura somente elementos com classe card-header
-        for item in soup.select(".card-header"):
+        for item in soup.select(".card-body"):
             text = item.get_text(strip=True)
             if text:
                 polos.add(normalize(text))
@@ -71,3 +71,4 @@ if st.button("Gerar Listas"):
     })
 
     st.dataframe(df.fillna("-"))
+
