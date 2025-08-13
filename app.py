@@ -7,7 +7,7 @@ import pandas as pd
 
 def normalize(name: str) -> str:
     s = name.strip()
-    for prefix in ["UFBRA - ", "POLO: ", "Polo ", "polo "]:
+    for prefix in ["UFBRA - ", "UFBRA ", "POLO: ", "Polo ", "polo "]:
         if s.lower().startswith(prefix.lower()):
             s = s[len(prefix):]
             break
